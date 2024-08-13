@@ -20,6 +20,7 @@ const PostReview = () => {
   let dealer_url = root_url+`djangoapp/dealer/${id}`;
   let review_url = root_url+`djangoapp/add_review`;
   let carmodels_url = root_url+`djangoapp/get_cars`;
+  console.log("carmodels_url:", carmodels_url)
 
   const postreview = async ()=>{
     let name = sessionStorage.getItem("firstname")+" "+sessionStorage.getItem("lastname");
@@ -48,6 +49,7 @@ const PostReview = () => {
     });
 
     console.log(jsoninput);
+    console.log("posting review...")
     const res = await fetch(review_url, {
       method: "POST",
       headers: {
@@ -55,6 +57,7 @@ const PostReview = () => {
       },
       body: jsoninput,
   });
+  console.log("POST review, res:", res)
 
   const json = await res.json();
   if (json.status === 200) {
@@ -66,12 +69,12 @@ const PostReview = () => {
     const res = await fetch(dealer_url, {
       method: "GET"
     });
+    console.log("get_dealer res:",res)
     const retobj = await res.json();
+    console.log("retobj:", retobj)
     
     if(retobj.status === 200) {
-      let dealerobjs = Array.from(retobj.dealer)
-      if(dealerobjs.length > 0)
-        setDealer(dealerobjs[0])
+        setDealer(retobj.dealer)
     }
   }
 
@@ -80,7 +83,7 @@ const PostReview = () => {
       method: "GET"
     });
     const retobj = await res.json();
-    
+    console.log("get_cars res:", res)
     let carmodelsarr = Array.from(retobj.CarModels)
     setCarmodels(carmodelsarr)
   }
