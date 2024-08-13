@@ -30,8 +30,9 @@ def get_request(endpoint, **kwargs):
 
 def analyze_review_sentiments(text):
     request_url = sentiment_analyzer_url+"analyze/"+text
+    print("restapis.py request_url:", request_url)
     try:
-        reponse = requests.get(request_url)
+        response = requests.get(request_url)
         return response.json()
     except Exception as err:
         print(f'Unexpected {err=}, {type(err)=}')
