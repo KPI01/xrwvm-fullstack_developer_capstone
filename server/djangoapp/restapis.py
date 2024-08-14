@@ -16,7 +16,7 @@ print("restapis.py sentiment_analyzer_url", sentiment_analyzer_url)
 
 def get_request(endpoint, **kwargs):
     params = ""
-    if(kwargs):
+    if (kwargs):
         for key, value in kwargs.items():
             params = params + key + "=" + value + "&"
     request_url = backend_url+endpoint+"?"+params
@@ -39,7 +39,6 @@ def analyze_review_sentiments(text):
         return response.json()
     except Exception as e:
         print(f"Network exception occurred [{e}]")
-
 
 
 def post_review(data_dict):
