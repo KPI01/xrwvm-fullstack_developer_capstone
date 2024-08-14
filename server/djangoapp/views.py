@@ -1,6 +1,6 @@
 # Uncomment the required imports before adding the code
 
-from django.shortcuts import render
+#from django.shortcuts import render
 # from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 # from django.shortcuts import get_object_or_404, render, redirect
@@ -64,7 +64,7 @@ def registration(request):
     elif email_exists:
         data = {"email": email, "error": "Email already registered!"}
         return JsonResponse(data)
-    else: 
+    else:
         user = User.objects.create(
             username=username,
             first_name=first_name,
@@ -101,7 +101,7 @@ def get_dealer_reviews(request, dealer_id):
             print(response)
             review_detail["sentiment"] = response["sentiment"]
         return JsonResponse({"status": 200, "reviews": reviews})
-    else: 
+    else:
         return JsonResponse({"status": 400, "message": "Bad request"})
 
 
@@ -121,10 +121,14 @@ def add_review(request):
         data = json.loads(request.body)
         print("views.py-add_review-data:", data)
         try:
-            response = post_review(data)
+            post_review(data)
             return JsonResponse({"status": 200})
         except Exception as e:
-            return JsonResponse({"status": 401, "error": e, "message": "Error in posting review"})
+            return JsonResponse({
+                "status": 401,
+                "error": e,
+                "message": "Error in posting review"
+            })
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized"})
 
@@ -137,5 +141,8 @@ def get_cars(request):
     car_models = CarModel.objects.select_related('car_make')
     cars = []
     for car_model in car_models:
-        cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
+        cars.append({
+            "CarModel": car_model.name,
+            "CarMake": car_model.car_make.name
+        })
     return JsonResponse({"CarModels": cars})
