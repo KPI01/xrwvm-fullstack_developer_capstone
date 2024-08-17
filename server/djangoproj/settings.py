@@ -30,15 +30,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    ('https://jorgelurd11-8000.theianext-0-labs-prod-',
+    ('https://jorgelurd11-8000.theianext-0-labs-prod-' +
      'misc-tools-us-east-0.proxy.cognitiveclass.ai')
 ]
 CSRF_TRUSTED_ORIGINS = [
-    ('https://jorgelurd11-8000.theiadockernext-1-labs-',
+    ('https://jorgelurd11-8000.theiadockernext-1-labs-' + 
      'prod-theiak8s-4-tor01.proxy.cognitiveclass.ai'),
-    ('https://jorgelurd11-8000.theianext-0-labs-prod',
+    ('https://jorgelurd11-8000.theianext-0-labs-prod' +
      '-misc-tools-us-east-0.proxy.cognitiveclass.ai'),
-    ("https://jorgelurd11-8001.theiadockernext-1-labs",
+    ("https://jorgelurd11-8001.theiadockernext-1-labs" +
      "-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai")
 ]
 
@@ -107,7 +107,7 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME':
-        ('django.contrib.auth.password_validation.',
+        ('django.contrib.auth.password_validation.' +
          'UserAttributeSimilarityValidator'),
     },
     {
@@ -156,5 +156,4 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend/static'),
     os.path.join(BASE_DIR, 'frontend/build'),
     os.path.join(BASE_DIR, 'frontend/build/static'),
-
 ]
