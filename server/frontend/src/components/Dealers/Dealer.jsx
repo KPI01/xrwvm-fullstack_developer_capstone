@@ -62,16 +62,14 @@ const Dealer = () => {
         get_reviews();
         if (sessionStorage.getItem("username")) {
             setPostReview(<a href={post_review}><img src={review_icon} style={{ width: '10%', marginLeft: '10px', marginTop: '10px' }} alt='Post Review' /></a>)
-
-
         }
-    }, []);
+    }, [get_dealer, get_reviews, post_review]);
 
 
     return (
         <>
             <Header />
-            <div style={{ margin: "20px"}}>
+            <div style={{ margin: "20px" }}>
                 <div style={{ marginTop: "10px" }}>
                     <h1 style={{ color: "grey" }}>{dealer.full_name}{postReview}</h1>
                     <h4 style={{ color: "grey" }}>{dealer['city']},{dealer['address']}, Zip - {dealer['zip']}, {dealer['state']} </h4>
