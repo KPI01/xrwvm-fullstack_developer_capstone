@@ -7,7 +7,6 @@ import review_icon from "../assets/reviewicon.png"
 const Dealers = () => {
     const [dealersList, setDealersList] = useState([]);
     // let [state, setState] = useState("")
-    let [setStates] = useState([])
     const [searchQuery, setSearchQuery] = useState('');
     const [originalDealers, setOriginalDealers] = useState([]);
 
@@ -15,6 +14,7 @@ const Dealers = () => {
     let dealer_url = "/djangoapp/get_dealers";
 
     const get_dealers = async () => {
+        console.debug("Gettings dealers...")
         const res = await fetch(dealer_url, {
             method: "GET"
         });
@@ -25,15 +25,14 @@ const Dealers = () => {
             all_dealers.forEach((dealer) => {
                 states.push(dealer.state)
             });
-
-            setStates(Array.from(new Set(states)))
             setDealersList(all_dealers)
             setOriginalDealers(all_dealers);
         }
     }
+
     useEffect(() => {
         get_dealers();
-    });
+    }, []);
 
     const handleInputChange = (event) => {
         const query = event.target.value;
