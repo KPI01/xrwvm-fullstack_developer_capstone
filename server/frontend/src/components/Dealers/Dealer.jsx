@@ -63,7 +63,7 @@ const Dealer = () => {
         if (sessionStorage.getItem("username")) {
             setPostReview(<a href={post_review}><img src={review_icon} style={{ width: '10%', marginLeft: '10px', marginTop: '10px' }} alt='Post Review' /></a>)
         }
-    }, [get_dealer, get_reviews, post_review]);
+    }, []);
 
 
     return (
