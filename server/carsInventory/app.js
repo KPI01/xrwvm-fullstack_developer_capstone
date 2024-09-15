@@ -13,8 +13,9 @@ app.use(express.urlencoded({ extended: false }));
 
 const carsData = JSON.parse(fs.readFileSync('car_records.json', 'utf8'));
 
-mongoose.connect('mongodb://mongo_db:27017/', { dbName: 'dealershipsDB' });
-
+mongoose.connect('mongodb://mongo_db:27017/', { dbName: 'dealershipsDB' })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 const Cars = require('./inventory');
 
